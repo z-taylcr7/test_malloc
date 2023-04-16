@@ -184,19 +184,9 @@ double ovhd()
 /* Get the clock rate from /proc */
 double mhz_full(int verbose, int sleeptime __attribute__((unused)))
 {
-    static char buf[2048];
+    double mhz = 2281.0;
 
-    FILE *fp = fopen("/proc/cpuinfo", "r");
-    double mhz = 0.0;
-
-    while (fgets(buf, 2048, fp)) {
-	if (strstr(buf, "cpu MHz")) {
-	    sscanf(buf, "cpu MHz\t: %lf", &mhz);
-	    break;
-	}
-    }
-    fclose(fp);
-    if (verbose) 
+    if (verbose)
 	printf("Processor clock rate ~= %.1f MHz\n", mhz);
     return mhz;
 
