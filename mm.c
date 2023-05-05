@@ -55,7 +55,7 @@
 /* Basic constants and macros */
 #define WSIZE       (4)       /* Word and header/footer size (bytes) */ //line:vm:mm:beginconst
 #define DSIZE       (8)       /* Double word size (bytes) */
-#define CHUNKSIZE  (400)  /* Extend heap by this amount (bytes) */  //line:vm:mm:endconst 
+// #define CHUNKSIZE  (400)  /* Extend heap by this amount (bytes) */  //line:vm:mm:endconst 
 #define MIN_BLK_SIZE (24) /* Minimum block size */
 
 #define MAX(x, y) ((x) > (y)? (x) : (y))  
@@ -217,7 +217,7 @@ void *malloc(size_t size)
     }
   // dbg_printf("extend_heap %ld\n", MAX(CHUNKSIZE, size));
   /* need to extend the heap */
-  void* bp = extend_heap(MAX(CHUNKSIZE, size));
+  void* bp = extend_heap(size);
   // dbg_printf("extend_heap done, bp = %p\n", bp);
   if (bp != NULL) place(bp, size);
   return bp;
